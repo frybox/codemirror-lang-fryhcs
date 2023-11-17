@@ -151,6 +151,8 @@ export const formatStringB = formatString(bracketClose, 1, formatStringBContent,
 export const formatString1l = formatString(singleQuote, 3, formatString1lContent, formatString1lBrace, formatString1lEnd)
 export const formatString2l = formatString(doubleQuote, 3, formatString2lContent, formatString2lBrace, formatString2lEnd)
 
+const lessThan = 60, greaterThan = 62, slash = 47, question = 63, bang = 33, dash = 45
+
 function contentTokenizer(tag, textToken, endToken) {
   let lastState = 2 + tag.length
   return new ExternalTokenizer(input => {

@@ -81,8 +81,8 @@ export const fryhcsLanguage = LRLanguage.define({
 /// FryHCS language support.
 export function fryhcs() {
   return new LanguageSupport(fryhcsLanguage, [
-    //fryhcsLanguage.data.of({autocomplete: localCompletionSource}),
-    //fryhcsLanguage.data.of({autocomplete: globalCompletion}),
+    fryhcsLanguage.data.of({autocomplete: localCompletionSource}),
+    fryhcsLanguage.data.of({autocomplete: globalCompletion}),
     javascript().support,
   ])
 }
