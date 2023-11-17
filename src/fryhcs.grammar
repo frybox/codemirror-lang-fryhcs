@@ -234,6 +234,10 @@ FrySelfClosingElement { "<" FryElementName fryAttribute* "/>" }
 
 FryStartTag { "<" FryElementName fryAttribute* ">" }
 
+fryScriptElement {
+  !fryscript ","? FryScriptElement 
+}
+
 FryScriptElement { "<script" fryAttribute* ">" ScriptText startCloseScriptTag "script>" }
 
 ScriptText { scriptText* }
@@ -250,10 +254,6 @@ FryEndTag { "</" FryElementName ">" }
 FryEmbed { "{" test "}" }
 JoinEmbed { FormatStringBracket JsEmbed }
 JsEmbed { "(" expression ")" }
-
-fryScriptElement {
-  !fryscript ","? FryScriptElement 
-}
 
 BinaryExpression {
   expression !bitor BitOp{"|"} expression |
