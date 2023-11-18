@@ -3,7 +3,6 @@ import {javascriptLanguage, javascript} from "@codemirror/lang-javascript"
 import {delimitedIndent, indentNodeProp, TreeIndentContext, 
         foldNodeProp, foldInside, LRLanguage, LanguageSupport} from "@codemirror/language"
 import {parser} from "./fryhcs-parser"
-export {parser}
 import {globalCompletion, localCompletionSource} from "./complete"
 export {globalCompletion, localCompletionSource}
 
@@ -61,11 +60,9 @@ export const fryhcsLanguage = LRLanguage.define({
         Body: (node, state) => ({from: node.from + 1, to: node.to - (node.to == state.doc.length ? 0 : 1)})
       })
     ],
-    /*
     wrap: parseMixed((node, input) => {
       return node.name == "ScriptText" ? {parser: javascriptLanguage.parser} : null
     }),
-    */
   }),
   languageData: {
     closeBrackets: {
