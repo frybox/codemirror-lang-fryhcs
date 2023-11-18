@@ -3,6 +3,7 @@ import {javascriptLanguage, javascript} from "@codemirror/lang-javascript"
 import {delimitedIndent, indentNodeProp, TreeIndentContext, 
         foldNodeProp, foldInside, LRLanguage, LanguageSupport} from "@codemirror/language"
 import {parser} from "./fryhcs-parser"
+export {parser}
 import {globalCompletion, localCompletionSource} from "./complete"
 export {globalCompletion, localCompletionSource}
 

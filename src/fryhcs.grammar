@@ -244,7 +244,7 @@ ScriptText { scriptText* }
 
 fryAttribute {
   FrySpreadAttribute { "{" ("*" | "**") expression "}" } |
-  FryAttribute { FryAttributeName ("=" fryAttributeValue)? }
+  FryAttribute { FryAttributeName (Is{"="} fryAttributeValue)? }
 }
 
 fryAttributeValue { shortString | FryEmbed | JoinEmbed | JsEmbed }

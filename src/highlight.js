@@ -37,4 +37,6 @@ export const fryhcsHighlighting = styleTags({
   "**": t.punctuation,
   "FryEmbedBegin FryEmbedEnd": t.brace,
   "JsEmbedBegin JsEmbedEnd": t.paren,
+  "Is": t.definitionOperator,
+  "FormatStringBracket": t.special(t.string),
 })
