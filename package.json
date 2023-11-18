@@ -5,7 +5,8 @@
   "scripts": {
     "build": "lezer-generator src/fryhcs.grammar -o src/fryhcs-parser && rollup -c",
     "prepare": "npm run build && cm-buildhelper src/fryhcs.ts",
-    "test": "mocha test/test-*.js && cm-runtests"
+    "test": "mocha test/test-*.js && cm-runtests",
+    "push": "git push; git push gitee; git push zenkj"
   },
   "keywords": [
     "editor",

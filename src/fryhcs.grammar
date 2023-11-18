@@ -230,15 +230,15 @@ FryElementExpression { FryElement fryScriptElement? }
   }
 }
 
-FrySelfClosingElement { FryTagStart FryElementName fryAttribute* FrySelfClosingTagEnd }
+FrySelfClosingElement { FryStartTagStart FryElementName fryAttribute* FrySelfClosingTagEnd }
 
-FryStartTag { FryTagStart FryElementName fryAttribute* FryTagEnd }
+FryStartTag { FryStartTagStart FryElementName fryAttribute* FryTagEnd }
 
 fryScriptElement {
   !fryscript ","? FryScriptElement 
 }
 
-FryScriptElement { "<script" fryAttribute* ">" ScriptText startCloseScriptTag "script>" }
+FryScriptElement { FryScriptStart fryAttribute* FryTagEnd ScriptText startCloseScriptTag FryScriptEnd }
 
 ScriptText { scriptText* }
 
@@ -249,11 +249,11 @@ fryAttribute {
 
 fryAttributeValue { shortString | FryEmbed | JoinEmbed | JsEmbed }
 
-FryEndTag { "</" FryElementName ">" }
+FryEndTag { FryEndTagStart FryElementName FryTagEnd }
 
-FryEmbed { "{" test "}" }
+FryEmbed { FryEmbedBegin test FryEmbedEnd }
 JoinEmbed { FormatStringBracket JsEmbed }
-JsEmbed { "(" expression ")" }
+JsEmbed { JsEmbedBegin expression JsEmbedEnd }
 
 BinaryExpression {
   expression !bitor BitOp{"|"} expression |
@@ -334,15 +334,19 @@ FormatReplacement<start> { start (YieldExpression | commaSep<"*"? test>) FormatC
 @tokens {
   FryFragmentStart { "<>" }
   FryFragmentEnd { "</>" }
-  FryTagStart { "<" }
+  FryStartTagStart { "<" }
+  FryEndTagStart { "</" }
   FryTagEnd { ">" }
   FrySelfClosingTagEnd { "/>" }
-
+  FryScriptStart { "<script" }
+  FryScriptEnd { "script>" }
   FryElementName { $[a-zA-Z0-9_.-]+ }
-
   FryAttributeName { $[a-zA-Z0-9@$%_.-]+ }
-
   FryText { ![<>{}[\]]+ }
+  FryEmbedBegin { "{" }
+  FryEmbedEnd { "}" }
+  JsEmbedBegin { "(" }
+  JsEmbedEnd { ")" }
 
   CompareOp { "<" | ">" | $[<>=!] "=" }
 
