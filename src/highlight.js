@@ -30,5 +30,9 @@ export const fryhcsHighlighting = styleTags({
   "[ ]": t.squareBracket,
   "{ }": t.brace,
   ".": t.derefOperator,
-  ", ;": t.separator
+  ", ;": t.separator,
+
+  "<> </> </ <script startCloseScriptTag script> FryElementName": t.tagName,
+  "FryAttributeName": t.attributeName,
+  "**": t.punctuation,
 })
