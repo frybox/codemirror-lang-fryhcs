@@ -224,15 +224,15 @@ FryElementExpression { FryElement fryScriptElement? }
 
 @skip {} {
   FryElement { 
-    FryFragment { "<>" (FryEmbed | JoinEmbed | FryElement | FryText)* "</>" } |
+    FryFragment { FryFragmentStart (FryEmbed | JoinEmbed | FryElement | FryText)* FryFragmentEnd } |
     FryPairedElement { FryStartTag (FryEmbed | JoinEmbed | FryElement | FryText)* FryEndTag } |
     FrySelfClosingElement
   }
 }
 
-FrySelfClosingElement { "<" FryElementName fryAttribute* "/>" }
+FrySelfClosingElement { FryTagStart FryElementName fryAttribute* FrySelfClosingTagEnd }
 
-FryStartTag { "<" FryElementName fryAttribute* ">" }
+FryStartTag { FryTagStart FryElementName fryAttribute* FryTagEnd }
 
 fryScriptElement {
   !fryscript ","? FryScriptElement 
@@ -332,6 +332,12 @@ FormatReplacement<start> { start (YieldExpression | commaSep<"*"? test>) FormatC
 @external tokens scriptTokens   from "./tokens" { scriptText, startCloseScriptTag }
 
 @tokens {
+  FryFragmentStart { "<>" }
+  FryFragmentEnd { "</>" }
+  FryTagStart { "<" }
+  FryTagEnd { ">" }
+  FrySelfClosingTagEnd { "/>" }
+
   FryElementName { $[a-zA-Z0-9_.-]+ }
 
   FryAttributeName { $[a-zA-Z0-9@$%_.-]+ }
