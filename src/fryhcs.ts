@@ -41,7 +41,7 @@ export const fryhcsLanguage = LRLanguage.define({
         "String FormatString": () => null,
         "FryStartTag FryEndTag FrySelfClosingElement FryScriptStartTag": cx => cx.column(cx.node.from) + cx.unit,
         "FryFragment FryPairedElement FryScriptElement": cx => {
-            let after = /^(\s*)(<\/)?/.exec(cs.textAfter)
+            let after = /^(\s*)(<\/)?/.exec(cx.textAfter)!
             return cx.lineIndent(cx.node.from) + (after[2] ? 0 : cx.unit)
         },
         Script: context => {
