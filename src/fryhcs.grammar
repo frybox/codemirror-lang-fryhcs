@@ -238,7 +238,9 @@ fryScriptElement {
   !fryscript ","? FryScriptElement 
 }
 
-FryScriptElement { FryScriptStart fryAttribute* FryTagEnd ScriptText startCloseScriptTag FryScriptEnd }
+FryScriptElement { FryScriptStartTag ScriptText startCloseScriptTag FryScriptEnd }
+
+FryScriptStartTag { FryScriptStart fryAttribute* FryTagEnd }
 
 ScriptText { scriptText* }
 

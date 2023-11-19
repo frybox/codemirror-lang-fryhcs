@@ -39,7 +39,11 @@ export const fryhcsLanguage = LRLanguage.define({
         "DictionaryExpression DictionaryComprehensionExpression SetExpression SetComprehensionExpression": delimitedIndent({closing: "}"}),
         "ArrayExpression ArrayComprehensionExpression": delimitedIndent({closing: "]"}),
         "String FormatString": () => null,
-        "FryStartTag FryEndTag FrySelfClosingElement": cx => cx.column(cx.node.from) + cx.unit,
+        "FryStartTag FryEndTag FrySelfClosingElement FryScriptStartTag": cx => cx.column(cx.node.from) + cx.unit,
+        "FryFragment FryPairedElement FryScriptElement": cx => {
+            let after = /^(\s*)(<\/)?/.exec(cs.textAfter)
+            return cx.lineIndent(cx.node.from) + (after[2] ? 0 : cx.unit)
+        },
         Script: context => {
           if (context.pos + /\s*/.exec(context.textAfter)![0].length >= context.node.to) {
             let endBody = null
