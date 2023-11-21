@@ -47,7 +47,7 @@ export const fryhcsLanguage = LRLanguage.define({
         "FryText": cx => {
             let after = /^(\s*)(<\/)?/.exec(cx.textAfter)!
             return after[2] ? cx.continue() : null
-        }
+        },
         Script: context => {
           if (context.pos + /\s*/.exec(context.textAfter)![0].length >= context.node.to) {
             let endBody = null
