@@ -110,8 +110,19 @@ def App():
       })
     </script>)
 `
+const code5 = `
+from fryhcs import Element, html
 
-const code = code4
+def index():
+    return html(App, title="My Page")
+
+def App():
+    return (
+    <div ref=(root)>
+      你好
+`
+
+const code = code5
 
 const parser = fryhcsLanguage.parser
 const tree = parser.parse(code)
