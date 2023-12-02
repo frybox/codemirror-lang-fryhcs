@@ -343,7 +343,7 @@ FormatReplacement<start> { start (YieldExpression | commaSep<"*"? test>) FormatC
   FryScriptStart { "<script" }
   FryScriptEnd { "script>" }
   FryElementName { $[a-zA-Z0-9_.-]+ }
-  FryAttributeName { $[a-zA-Z0-9@$%_.-]+ }
+  FryAttributeName { $[a-zA-Z0-9@%$:._-]+ }
   FryText { ![<>{}[\]]+ }
   FryEmbedBegin { "{" }
   FryEmbedEnd { "}" }
